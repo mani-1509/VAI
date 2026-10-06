@@ -1,26 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Pixelify+Sans:wght@500;600;700&family=Righteous&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d0d0d;
+  --foreground: #fffdef;
+  --card-bg: #171717;
+  --primary: #ff834f;
+  --primary-hover: #e56d3b;
+  --primary-soft: rgba(255, 131, 79, 0.15);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --font-heading: var(--font-mono), 'Space Mono', 'Unbounded', 'Syne', monospace;
+  --font-stylized: 'Righteous', 'Syne', cursive, sans-serif;
+  --font-bitcount: 'Bitcount Grid', 'Bitcount Prop', 'Pixelify Sans', 'Silkscreen', monospace;
+  --font-mono: 'Space Mono', 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
+  --font-serif: var(--font-serif), 'Newsreader', serif;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card-bg);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --font-heading: var(--font-heading);
+  --font-stylized: var(--font-stylized);
+  --font-bitcount: var(--font-bitcount);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading) !important;
+  letter-spacing: -0.02em;
+}
+
+.font-stylized {
+  font-family: var(--font-stylized);
+}
+
+.font-bitcount {
+  font-family: var(--font-bitcount);
+  letter-spacing: 0.05em;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* CTA-Inspired High Contrast Dark Cards */
+.claude-card {
+  background: #171717;
+  color: #fffdef;
+  border: 1px solid var(--border);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 16px 36px -10px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.claude-card:hover {
+  border-color: rgba(255, 131, 79, 0.5);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 24px 50px -10px rgba(255, 131, 79, 0.15);
+  transform: translateY(-2px);
+}
+
+.claude-button-primary {
+  background: linear-gradient(135deg, #ff9668 0%, #ff834f 50%, #e56d3b 100%);
+  color: #0d0d0d;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(255, 131, 79, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.claude-button-primary:hover {
+  background: linear-gradient(135deg, #ffa37a 0%, #ff8c5a 50%, #ea632f 100%);
+  box-shadow: 
+    0 8px 26px rgba(255, 131, 79, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.claude-button-primary:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 
+    0 2px 8px rgba(255, 131, 79, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.claude-button-secondary {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #fffdef;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.claude-button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: #ff834f;
+  color: #fffdef;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 131, 79, 0.2);
+  transform: translateY(-2px);
+}
+
+.claude-button-secondary:active {
+  transform: translateY(1px) scale(0.96);
+  background-color: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.claude-button-dark {
+  background-color: #171717;
+  color: #fffdef;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.claude-button-dark:hover {
+  background-color: #202020;
+  border-color: #ff834f;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(255, 131, 79, 0.2);
+  transform: translateY(-2px);
+}
+
+.claude-button-dark:active {
+  transform: translateY(1px) scale(0.96);
+  background-color: #121212;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtle Static Grid Background */
+.bg-subtle-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 131, 79, 0.45);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 131, 79, 0.8);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
